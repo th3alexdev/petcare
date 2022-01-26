@@ -1,0 +1,103 @@
+
+    @use '../utils/variables' as v;
+    @use '../utils/functions' as f;
+    @use '../utils/mixins' as *;
+
+    .preloader {
+        position: fixed;
+        z-index: 100;
+        top: 0; 
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: f.getColorPalette('primary') url("../assets/img/logo.png") no-repeat center; 
+        
+        opacity: 1;
+        display: block;
+        transition: all .3s ease-in-out;
+        animation: {
+            name: loaderZoom;
+            duration: 3s;
+            delay: 1s;
+            iteration-count: infinite;
+            direction: alternate;
+        }
+
+        @include query ('mb-s', 'mb-l', null) {
+            background-size: 20%;
+        }
+
+        @include query ('tablet-s', 'laptop-s', null) {
+            background-size: 10%
+        }
+
+        @include query ('laptop-l', null, 'min') {
+            background-size: 4%
+        }
+
+        &--fade-out { 
+            z-index: -100;
+            opacity: 0;
+        }
+    }
+
+    @include query ('mb-s', 'mb-l', null) {
+
+        @keyframes loaderZoom {
+            0% {
+                background-size: 20%;
+            }
+            25% {
+                background-size: 25%;
+            }
+            50% {
+                background-size: 20%;
+            }
+            75% {
+                background-size: 25%;
+            }
+            100% {
+                background-size: 20%;
+            }
+        }
+    }
+
+    @include query ('tablet-s', 'laptop-s', null) {
+        @keyframes loaderZoom {
+            0% {
+                background-size: 10%;
+            }
+            25% {
+                background-size: 15%;
+            }
+            50% {
+                background-size: 10%;
+            }
+            75% {
+                background-size: 15%;
+            }
+            100% {
+                background-size: 10%;
+            }
+        }
+    }
+
+    @include query ('laptop-l', null, 'min') {
+        @keyframes loaderZoom {
+            0% {
+                background-size: 6%;
+            }
+            25% {
+                background-size: 4%;
+            }
+            50% {
+                background-size: 6%;
+            }
+            75% {
+                background-size: 4%;
+            }
+            100% {
+                background-size: 6%;
+            }
+        }
+    }

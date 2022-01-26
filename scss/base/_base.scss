@@ -1,0 +1,103 @@
+
+    @use '../utils/variables' as v;
+    @use '../utils/functions' as f;
+    @use '../utils/mixins' as *;
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    :root {
+        @each $name, $color in v.$theme-default {
+            --color-#{$name}: #{$color};
+        }
+        --theme: 'default';
+    }
+   
+    body {
+        position: relative;
+        margin: 0;
+        padding-top: 65px;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 300;
+        color: f.getColorTheme('text-color');
+        background-color: f.getColorTheme('bg-color');
+
+        &::before, &::after {
+            position: absolute;
+            content: '';
+            z-index: -10;
+            width: 85px;
+            height: 85px;
+
+            @include query ('laptop-l', null, 'min') {
+                width: 110px;
+                height: 110px;
+            }
+        }
+        
+        &::before {
+            top: 0;
+            left: 0;
+            background-color: f.getColorPalette('primary');
+            border-bottom-right-radius: 100%;
+        }
+
+        &::after {
+            right: 0;
+            bottom: 0;
+            background-color: f.getColorPalette('secondary');
+            border-top-left-radius: 100%;
+        }
+
+        &.dark {
+            @each $name, $color in v.$theme-dark {
+                --color-#{$name}: #{$color};
+            }
+            --theme: 'dark';
+        }
+    }
+
+    a {
+        color: f.getColorTheme('text-color');
+        text-decoration: none;
+    }
+
+    ul, ol {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    h1, h2, h3, h4, h5 {
+        margin: 0;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    input {
+        width: 100%;
+        border: none;
+    }
+
+    input, input:focus {
+        outline: none; 
+    }
+
+    textarea {
+        resize: none;
+        border: none; 
+        width: 100%;
+    }
+    textarea:focus {
+        outline: none;
+    }
+
+    img {
+        max-width: 100%;
+    }

@@ -1,0 +1,146 @@
+
+    @use '../utils/variables' as v;
+    @use '../utils/functions' as f;
+    @use '../utils/mixins' as *;
+
+    .main {
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+
+    .home {
+        position: relative;
+        @extend %box;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: repeat(2, max-content);
+        grid-template-areas: "image"
+                             "content";
+        row-gap: 45px;
+        justify-content: center;
+        
+        @include query ('tablet-md', null, 'min') {
+            margin: 0 auto;
+            padding: 50px 35px;
+            grid-template-columns: minmax(100px, 700px) max-content;
+            grid-template-rows: max-content;
+            grid-template-areas: "content image";
+            gap: 50px;
+        }
+
+        @include query ('laptop-s', null, 'min') {
+            gap: 80px;
+        }
+
+        &-content {
+            grid-area: content;
+            align-self: center;
+        }
+
+        &-img {
+            padding: 0 15px;
+            position: relative;
+            grid-area: image;
+            margin: 0 auto;
+            align-self: center;
+        }
+    }
+
+    .about {
+        @extend %box;
+        text-align: center;
+
+        &-container {
+            display: grid;
+            grid-template-columns: 100%;
+            grid-template-rows: repeat(2, max-content);
+            grid-template-areas: "image"
+                                 "content";
+            row-gap: 25px;        
+            justify-content: center;
+            
+            @include query ('tablet-md', null, 'min') {
+                margin: 0 auto;
+                grid-template-columns: max-content minmax(100px, 700px);
+                grid-template-rows: max-content;
+                grid-template-areas: "image content";
+                gap: 35px;
+            }
+
+            @include query ('laptop-s', null, 'min') {
+                gap: 50px;
+            }
+            
+            @include query ('laptop-s', null, 'min') {
+                gap: 80px;
+            }
+        }
+
+        &-content {
+            grid-area: content;
+            text-align: left;    
+            align-self: center;
+        }
+        
+        &-img {
+            padding: 0 15px;
+            position: relative;
+            grid-area: image;
+            margin: 0 auto;
+            align-self: center;
+        }
+    }
+
+    .services {
+        @extend %box;
+        text-align: center;
+    }
+
+    .plans {
+        @extend %box;
+        text-align: center;
+    }
+
+    .contact {
+        @extend %box;
+
+        @include query ('laptop-s', null, 'min') {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: max-content;
+            grid-template-areas: "content form";
+            column-gap: 25px;
+        }
+
+        &-list {
+            margin-bottom: 15px;
+            padding: 0;
+
+            &__item {
+                font-size: .8rem;
+                color: f.getColorTheme('text-color')
+            }
+        }
+
+        &-content {
+            margin-bottom: 90px;
+            
+            @include query ('laptop-s', null, 'min') {
+                margin-bottom: 0;
+                grid-area: content;
+            }
+        }
+
+        &-form {
+            position: relative;
+            padding: 35px 25px;
+            background-color: f.getColorTheme('bg-card');
+            border-radius: 15px;
+            box-shadow: v.$shadow;
+            
+            @include query ('laptop-s', null, 'min') {
+                margin-top: 105px;
+                grid-area: form;
+            }
+        }
+    }

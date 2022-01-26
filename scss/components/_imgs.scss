@@ -1,0 +1,102 @@
+
+    @use '../utils/variables' as v;
+    @use '../utils/functions' as f;
+    @use '../utils/mixins' as *;
+
+    .petcare {
+        &-img {
+            display:block;
+            position: relative;
+            border-radius: 50% 40% / 40% 50%;
+        }
+
+        &-icon {
+            position: absolute;
+            left: 10px;
+            bottom: 0;
+            width: 60px;
+            animation: {
+                name: iconTranslate;
+                duration: 3s;
+                delay: 1s;
+                iteration-count: infinite;
+                direction: alternate;
+            }
+
+            @media (min-width: 460px) {
+                left: 20px;
+            }
+
+            @include query ('tablet-md', null, 'min') {
+                width: 90px;
+            }
+
+            &--form {
+                left: 15px;
+                top: -65px;
+
+                @include query ('tablet-md', null, 'min') {
+                    left: 30px;    
+                    top: -90px;
+                }
+            }
+        }
+    }
+
+    @keyframes iconTranslate {
+        0% {
+            transform: translateX(0);
+        }
+        50% {
+            transform: translateX(-10px);
+        }
+        100% {
+            transform: translateX(10px);
+        }
+    }
+
+    .img-container {
+        position: relative;
+        margin: 0 auto;
+
+        @media (min-width: 460px) {
+            width: 390px;
+        }
+
+        @include query ('laptop-s', null, 'min') {
+            width: 520px;
+        }
+
+        &::before {
+            position: absolute;
+            z-index: -10;
+            content: '';
+            top: -9px;
+            left: 11px;
+            width: 80%;
+            max-width: 610px;
+            height: 99%;
+            border-radius: 30% 70% 50% 50% / 50%;
+            transform: rotate(50deg);
+
+            @include query ('tablet-s', 'tablet-md', null) {
+                top: 10px;
+                left: 0px;
+                width: 100%;
+            }
+
+            @include query ('laptop-l', null, 'min') {
+                top: 10px;
+                left: 0px;
+                width: 100%;
+            }
+        }
+        
+        &--primary::before {
+            border: 1px solid f.getColorPalette('secondary');
+        }
+
+        &--secondary::before {
+            border: 1px solid f.getColorPalette('thirtiary');
+        }
+    }

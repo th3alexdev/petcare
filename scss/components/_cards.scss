@@ -1,0 +1,136 @@
+
+    @use '../utils/variables' as v;
+    @use '../utils/functions' as f;
+    @use '../utils/mixins' as *;
+
+    .cards-container {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .card {
+        width: 100%;
+        margin: 0 5px 10px 5px;
+        padding: 30px 25px;
+        background-color: f.getColorTheme('bg-card');
+        border-radius: 10px;
+        box-shadow: v.$shadow;
+
+
+        &__img-container {
+            position: relative;
+            width: 100px;
+            margin: 0 auto 10px auto;
+            grid-area: img;
+
+            &::before {
+                position: absolute;
+                content: '';
+                top: -11px;
+                left: -11px;
+                width: 120px;
+                height: 120px;
+                border-radius: 15px;
+                border: 1px solid f.getColorPalette('thirtiary');
+            }
+            
+            @include query ('laptop-s', null, 'min') {
+                width: 120px;
+                padding-top: 15px;
+
+                &::before {
+                    top: 4px;
+                    left: -11px;
+                    width: 140px;
+                    height: 140px;
+                }
+            }
+        }
+
+        &-img {
+            border-radius: 15px;
+        }
+
+        &__info-container {
+            width: 90%;
+            margin: 0 auto;
+            grid-area: content;
+            align-self: center;
+            
+            @include query ('laptop-s', null, 'min') {
+                text-align: left;
+            }    
+        }
+
+        &--plans {
+            text-align: left;
+
+            @include query ('laptop-s', null, 'min') {
+                width: 31.3%;
+            }    
+        }
+
+        &--large {
+            display: grid;
+            grid-template-columns: 100%;
+            grid-template-rows: repeat(2, max-content);
+            grid-template-areas: "img"
+                                 "content";    
+                                 
+            @include query ('laptop-s', null, 'min') {
+                grid-template-columns: 150px minmax(100px, 800px);
+                grid-template-rows: max-content;
+                grid-template-areas: "img content";    
+                gap: 15px;
+            }
+                
+            @include query ('tablet-s', 'laptop-s', null) {
+                flex-basis: 350px;
+                flex-grow: 1;
+            }
+
+            @include query ('laptop-s', null, 'min') {
+                margin: 0 8px 16px 8px;
+                flex-basis: 700px;
+                flex-grow: 1;
+            }
+        }
+
+    }
+
+    .plans {
+
+        &-header {
+            padding-bottom: 10px;
+            border-bottom: .5px solid f.getColorPalette('thirtiary');
+        }
+
+        &-body {
+            padding: 8px 0;
+            font-size: .8rem;
+        }
+
+        &-footer {
+            padding-top: 16px;
+            border-top: .5px solid f.getColorPalette('thirtiary');
+        }
+    }
+
+    .price-container {
+        display: flex;
+        align-items: center;
+
+        &--basic {
+            color: f.getColorPalette('secondary');
+        }
+        &--standard {
+            color: f.getColorPalette('primary');
+        }
+        &--premium {
+            color: f.getColorPalette('thirtiary');
+        }
+    }
+    

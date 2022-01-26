@@ -1,0 +1,44 @@
+
+    @use '../utils/variables' as v;
+    @use '../utils/functions' as f;
+
+    @mixin query ($min, $max, $type: null) {
+
+        @if ($type == null) {
+            $min: f.getBk($min);
+            $max: f.getBk($max);
+
+            @media (min-width: #{$min}) and (max-width: #{$max}) {
+                @content;
+            }
+        }
+
+        @else if ($type == min) {
+            $min: f.getBk($min);
+            
+            @media (min-width: #{$min}) {
+                @content;
+            }
+
+        } @else if ($type == max) {
+            $max: f.getBk($max);
+    
+            @media (max-width: #{$max}){ 
+                @content;
+            }
+
+        } @else {
+
+            @error "Unknown query.";
+        } 
+    }
+
+    %box {
+        width: 100%;
+        padding: 30px 10px;
+        margin-bottom: 50px;
+
+        @include query ('laptop-s', null, 'min') {
+            padding: 45px 35px;
+        }
+    }

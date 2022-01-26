@@ -1,0 +1,112 @@
+
+    @use '../utils/variables' as v;
+    @use '../utils/functions' as f;
+    @use '../utils/mixins' as *;
+    @use '../base/base' as b;
+
+    .form {
+        &::before {
+            position: absolute;
+            content: '';
+            top: -38px; 
+            right: 5px;
+            width: 28px;
+            height: 28px;
+            background-color: f.getColorPalette('secondary');
+            transform: rotate(15deg);
+
+            @include query ('laptop-s', null, 'min') {
+                top: -50px;
+                right: 15px;
+                width: 32px;
+                height: 32px;                
+            }
+        }
+
+        &::after {
+            position: absolute;
+            content: '';
+            bottom: -18px; 
+            left: 3px;
+            width: 15px;
+            height: 15px;
+            background-color: f.getColorPalette('primary');
+            transform: rotate(85deg);
+
+            @include query ('laptop-s', null, 'min') {
+                bottom: -32px;
+                right: 7px;
+                width: 20px;
+                height: 20px;                
+            }
+        }
+    }
+
+    .input-g{
+        position: relative;
+        margin-bottom: 15px;
+
+        &-submit {
+            width: max-content;
+            overflow: hidden;
+        }
+
+        &__label {
+            position: absolute;
+            left: 0;
+            font-size: .8rem;
+            color: f.getColorTheme('text-color');
+            transform: translateY(8px);
+            transition: transform .3s ease-in-out, font-size .3s ease-in-out;
+        }
+
+        &__input {
+            height: 35px;
+            padding: 10px 0;
+            background-color: transparent;
+            border-bottom: .5px solid f.getColorPalette('thirtiary');
+            font-size: .7rem;
+            font-family: sans-serif;
+            transition: background-color .35s ease-in-out;
+
+            &:focus {
+                background-color: f.getColorTheme('bg-input');
+            }
+            
+            &--textarea {
+                height: 105px;
+                font-weight: 300;
+            }
+        }
+
+    }
+
+    .input-g__input:focus + .input-g__label   {
+        font-size: .5rem;
+        transform: translateY(-6px);
+    }
+
+
+    // .field-input:focus  + .field-label, .field-input:not(:placeholder-shown) + .field-label{
+    //     padding: 2px 3px;
+    //     transform: translateY(-10px) scale(.7);
+    //     transform-origin: left top;
+    //     background-color: rgba(248 248 248 / 90%);
+    //   }
+      
+    // .field-textarea:focus + .field-label, .field-textarea:not(:placeholder-shown) + .field-label{
+    //     padding: 2px 3px;
+    //     transform: translateY(-10px) scale(.7);
+    //     transform-origin: left top;
+    //     background-color: rgba(248 248 248 / 90%);
+    // }
+
+
+
+       
+
+    // .input-g__input:focus + .input-g__label, .input-g__input:not(:placeholder-shown) + .input-g__label {
+        // font-size: .5rem;
+        // transform: translateY(-6px);
+        // transform-origin: left top;
+    // }

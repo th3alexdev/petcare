@@ -1,0 +1,64 @@
+
+    @use '../utils/variables' as v;
+    @use '../utils/functions' as f;
+    @use '../utils/mixins' as *;
+
+
+    .icon {
+        margin-right: 5px;
+
+        &--toggle {
+            font-size: 1.5rem;
+            line-height: 60px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            color: f.getColorTheme('text-color');
+        }
+
+        &--card-standard {
+            color: f.getColorPalette('primary');
+        }
+
+        &--card-basic {
+            color: f.getColorPalette('secondary');
+        }
+
+        &--card-premium {
+            color: f.getColorPalette('thirtiary');
+        }
+
+        &--theme {
+            color: f.getColorTheme('text-color');
+        }
+
+        &--contact {
+            padding-left: 6px;
+            margin-right: 15px;
+            font-size: .8rem;
+            color: f.getColorTheme('text-color')
+        }
+
+        &--socialmedia {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: inherit;
+
+            @include query ('tablet-md', null, 'min') {
+                width: 38px;
+                height: 38px;
+            }
+
+            &:hover { 
+                color: f.getColorPalette('light');
+                transition: color .5s ease;
+            }
+        }
+    }
+
+
+
+    

@@ -1,0 +1,38 @@
+
+    $shadow: 1px 1px 10px rgba(0 0 0 / 0.1);
+    $weights: 300, 400, 500, 600, 700;
+
+    $palette: (
+        'primary': #a68be9,
+        'secondary': #e88486,
+        'thirtiary': #edd08c,
+        'light': #fff,
+        'dark': #222,
+    );
+
+    $theme-default: (
+        'bg-color': #f5e7c6,
+        'bg-card': #f9f1dd,
+        'bg-input': darken(#f9f1dd, 5%),
+        'text-color': #333, 
+        'dark': #222
+    );
+
+    $theme-dark: (
+        'bg-color': #2b2736,
+        'bg-card': #36323e,
+        'bg-input': darken(#36323e, 5%),
+        'text-color': #fff,
+        'light': #fff,
+    );
+
+    $bks: (
+        'mb-s': 320px,
+        'mb-md': 375px,
+        'mb-l': 425px,
+        'tablet-s': 610px,
+        'tablet-md': 768px,
+        'laptop-s': 1024px,
+        'laptop-l': 1440px,
+        'laptop-uw': 2000px
+    )

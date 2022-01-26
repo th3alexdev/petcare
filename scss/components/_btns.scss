@@ -1,0 +1,127 @@
+
+    @use '../utils/variables' as v;
+    @use '../utils/functions' as f;
+    @use '../utils/mixins' as *;
+
+    .btn {
+
+        &-link {
+            position: relative;
+            width: 130px;
+            padding: 5px 10px;
+            text-align: center;
+            font-size: 1em;
+            font-weight: nth(v.$weights, 3);
+            color: f.getColorPalette('light');
+            border-radius: 30px;
+            display: block;
+            overflow: hidden;
+
+            @include query ('mb-l', null, 'min') {
+                width: 150px;
+            }
+
+            @include query ('tablet-md', null, 'min') {
+                width: 190px;
+            }
+            
+            &--primary {
+                background-color: f.getColorPalette('primary');
+            }
+        
+            &--basic {
+                background-color: f.getColorPalette('secondary');
+            }
+        
+            &--premium {
+                background-color: f.getColorPalette('thirtiary');
+            }
+        
+            &--submit {
+                width: 160px;
+                font-size: .9em;
+                font-family: inherit;
+                background-color: f.getColorPalette('primary'); 
+                cursor: pointer;
+                overflow: hidden;
+
+                @include query ('tablet-s', null, 'min') {
+                    width: 190px;
+                }
+
+                @include query ('tablet-s', null, 'min') {
+                    width: 190px;
+                }
+
+                @media (min-width: 780px) {
+                    width: 210px;
+                }
+            }
+        }
+
+        &-theme {
+            position: fixed;
+            z-index: 100;
+            right: 15px;
+            bottom: 15px;
+            font-size: 1.2rem;
+            background-color: transparent;
+            cursor: pointer;
+            border: none;
+        }
+    }
+
+    .squares {
+        border-radius: 30px;
+
+        &::before, &::after {
+            position: absolute;
+            z-index: 100;
+            content: '';
+            width: 6px;
+            height: 6px;
+            background-color: f.getColorPalette('light');
+            transform: rotate(-15deg);
+            transition: transform .3s ease-in-out;
+
+            @include query ('tablet-md', null, 'min') {
+                width: 8px;
+                height: 8px;
+            }
+        }
+
+        &::before {
+            top: 6px;
+            left: -10px;
+
+            @include query ('tablet-md', null, 'min') {
+                top: 8px;
+            }            
+            
+        }
+
+        &::after {
+            bottom: 6px;
+            right: -10px;
+
+            @include query ('tablet-md', null, 'min') {
+                bottom: 8px;
+            }            
+        }
+
+        &:hover { 
+            &::before {
+                transform: translateX(22px) rotate(35deg);
+                @include query ('tablet-md', null, 'min') {
+                    transform: translateX(26px) rotate(35deg);
+                }    
+            }
+
+            &::after {
+                transform: translateX(-22px) rotate(35deg);
+                @include query ('tablet-md', null, 'min') {
+                    transform: translateX(-26px) rotate(35deg);
+                }                    
+            }
+        }
+    }

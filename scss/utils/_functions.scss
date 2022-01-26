@@ -1,0 +1,30 @@
+
+    @use '../utils/variables' as v;
+
+    @function getColorPalette($name) {
+        @return map-get(v.$palette, $name);
+    }
+    
+    @function getColorTheme($color-name) {
+        @return var(--color-#{$color-name});
+    }
+
+    @function getBk($name) {
+        @return map-get(v.$bks, $name);
+    }
+    
+    // @function color($color, $tone) {
+    //     @if map-has-key(v.$theme, $color) {
+    //         $color: map-get(v.$theme, $color);
+
+    //         @if map-has-key($color, $tone) {
+    //             $tone: map-get($color , $tone);
+
+    //             @return $tone;
+    //         }
+
+    //         @warn "Unknown tone `#{$tone}` in color";
+    //     }
+
+    //     @warn "Unknown color `#{$color} in palette`"
+    // }

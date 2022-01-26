@@ -1,0 +1,133 @@
+
+    @use '../utils/variables' as v;
+    @use '../utils/functions' as f;
+    @use '../utils/mixins' as *;
+
+    html {
+        font-size: 16px;
+    }
+
+      @media screen and (min-width: 320px) {
+        html {
+          font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+        }
+      }
+
+      @media screen and (min-width: 1000px) {
+        html {
+          font-size: 22px;
+        }
+    }
+
+    .title {
+        margin-bottom: 35px;
+
+        &-desc {
+            color: f.getColorPalette('primary');
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            font-weight: nth(v.$weights, 3);
+            display: block;
+        }
+        
+        &--main {
+            margin-bottom: 15px;
+            font-size: 2.2rem;
+            line-height: 40px;
+
+            @include query ('tablet-md', null, 'min') {
+                line-height: 50px;
+            } 
+        }
+
+        &--fact {
+            margin-bottom: 0;
+        }
+
+        &--card {
+            position: relative;
+            margin-bottom: 0;
+            font-size: 1.3rem;
+            font-weight: nth(v.$weights, 1);
+            overflow: hidden;
+
+            &-bold {
+                display: block;
+                transition: transform .5s ease;
+            }
+
+            &::before {
+                position: absolute;
+                content: attr(data-text);
+                left: 0;
+                bottom: 100%;
+                width: auto;
+                height: auto;
+                font-weight: nth(v.$weights, 4);
+                transform: translateY(0);
+                transition: transform .5s ease;
+            }
+            
+            &-basic::before {
+                color: f.getColorPalette('secondary');       
+            }
+
+            &-standard::before {
+                color: f.getColorPalette('primary');
+            }
+
+            &-premium::before {
+                color: f.getColorPalette('thirtiary');
+            }
+        }
+
+        &--contact {
+            margin-bottom: 10px;
+        }
+    }
+
+    .subtitle {
+        font-size: 1rem;
+        font-weight: nth(v.$weights, 2);
+
+        &--card {
+            margin-bottom: 10px;
+        }
+
+        &--footer {
+            margin-bottom: 5px;
+        }
+    }
+
+    .text {
+        margin-bottom: 10px;
+        font-size: .9rem;
+        color: f.getColorTheme('text-color');
+
+        &--card {
+            font-size: .8rem;
+        }
+
+        &--fact {
+            color: f.getColorTheme('text-color');
+        }
+
+        &--footer {
+            font-size: .8rem;
+        }
+    }
+    
+    .price {
+        margin-right: 5px;
+        font-size: 1.5rem;
+        font-weight: nth(v.$weights, 5);
+
+        &-month {
+            font-size: .8rem;
+        }
+    }
+
+    .card--plans:hover .title--card-bold, 
+    .card--plans:hover .title--card::before {
+        transform: translateY(100%);
+    }
